@@ -1,0 +1,23 @@
+{
+  "title": "Afișează primele n-cifre ale lui Pi",
+  "lbl.formateDate": "{dateParam, date, medium}",
+  "lbl.log_in": "enteritis",
+  "lbl.username": "nume de utilizator",
+  "lbl.password": "parolă",
+  "lbl.forgot_password": "Aţi uitat parola",
+  "lbl.sign_in": "conectare",
+  "lbl.number_of_digits": "Numărul de cifre",
+  "lbl.unpause": "Întrerupeți",
+  "lbl.pause": "Pauză",
+  "lbl.start": "Început",
+  "lbl.refresh": "continuă",
+  "lbl.copy": "copie",
+  "lbl.dark_theme": "Tema întunecată",
+  "lbl.light_theme": "Tema ușoară",
+  "lbl.logout": "Deconectare",
+  "lbl.search_number": "Nr. de căutare",
+  "lbl.search": "Căutare",
+  "lbl.clear": "Clar",
+  "lbl.err_too_long": "Numărul de cifre nu poate fi mai mare de 1000!",
+  "lbl.err_negative": "Numărul de cifre trebuie să fie pozitiv!"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "הספרות הראשונות של פאי n",
+  "lbl.formateDate": "{dateParam, date, medium}",
+  "lbl.log_in": "תיכנס חביבי",
+  "lbl.username": "שם משתמש",
+  "lbl.password": "סיסמה",
+  "lbl.forgot_password": "שכחתי סיסמה",
+  "lbl.sign_in": "להיכנס",
+  "lbl.number_of_digits": "מספר הספרות",
+  "lbl.unpause": "המשך",
+  "lbl.pause": "עצור",
+  "lbl.start": "התחל",
+  "lbl.refresh": "רענן",
+  "lbl.copy": "העתק",
+  "lbl.dark_theme": "מצב כהה",
+  "lbl.light_theme": "מצב בהיר",
+  "lbl.logout": "להתנתק",
+  "lbl.search_number": "לחפש מספר",
+  "lbl.search": "חפש",
+  "lbl.clear": "נקה",
+  "lbl.err_too_long": "מספר הספרות לא יכול להיות גדול מ1000!",
+  "lbl.err_negative": "מספר הספרות לא יכול להיות שלילי!"
+}

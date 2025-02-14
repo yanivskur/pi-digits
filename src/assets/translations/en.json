@@ -1,0 +1,23 @@
+{
+  "title": "Display the first n-digits of Pi",
+  "lbl.formateDate": "{dateParam, date, short}",
+  "lbl.log_in": "login in english",
+  "lbl.username": "Username",
+  "lbl.password": "Password",
+  "lbl.forgot_password": "Forgot Password",
+  "lbl.sign_in": "Sign In",
+  "lbl.number_of_digits": "Number of digits",
+  "lbl.unpause": "Unpause",
+  "lbl.pause": "Pause",
+  "lbl.start": "Start",
+  "lbl.refresh": "Refresh",
+  "lbl.copy": "Copy",
+  "lbl.dark_theme": "Dark Theme",
+  "lbl.light_theme": "Light Theme",
+  "lbl.logout": "Logout",
+  "lbl.search_number": "Search number",
+  "lbl.search": "Search",
+  "lbl.clear": "Clear",
+  "lbl.err_too_long": "Number of digits cannot be larger than 1000!",
+  "lbl.err_negative": "Number of digits must be positive!"
+}
