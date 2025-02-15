@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
-  loggedIn: localStorage.getItem("logged_in"),
+  loggedIn: localStorage.getItem("logged_in") === "true",
   userId: localStorage.getItem("user_id"),
   error: null,
 };

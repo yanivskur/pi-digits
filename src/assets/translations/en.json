@@ -15,9 +15,9 @@
   "lbl.dark_theme": "Dark Theme",
   "lbl.light_theme": "Light Theme",
   "lbl.logout": "Logout",
-  "lbl.search_number": "Search number",
+  "lbl.search_sequence": "Search sequence",
+  "lbl.highlight_digit": "Highlight digit",
   "lbl.search": "Search",
-  "lbl.clear": "Clear",
   "lbl.err_too_long": "Number of digits cannot be larger than 1000!",
   "lbl.err_negative": "Number of digits must be positive!"
 }

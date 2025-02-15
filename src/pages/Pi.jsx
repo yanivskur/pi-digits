@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Text, Flex, Input } from "theme-ui";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getPiDigits } from "../redux/slices/PiSlice";
+import { getPiDigits, searchPi } from "../redux/slices/PiSlice";
 import MyButton from "../components/MyButton";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -16,7 +16,7 @@ const Pi = () => {
   // Use dispatch to call redux functions
   const dispatch = useDispatch();
   // Use selector to get the piDigits from the store
-  const { piDigits } = useSelector((state) => state.PiSlice);
+  const { piDigits, searchResults } = useSelector((state) => state.PiSlice);
 
   // The number in the input field
   const [numDigits, setNumDigits] = useState(20);
@@ -33,10 +33,10 @@ const Pi = () => {
   });
   // Long pressing the plus and minus buttons
   const [intervalPlMn, setIntervalPlMn] = useState(null);
-  // The number in the search field
-  const [numSearch, setNumSearch] = useState(42);
-  // The number passed to RenderDigits
-  const [searchValue, setSearchValue] = useState("");
+  // The digit to highlight
+  const [highlightDigit, setHighlightDigit] = useState(null);
+  // The sequnece in the input field
+  const [seqSearch, setSeqSearch] = useState("");
 
   //--------------------------------------------------------------
   //Use effect to print every second 1 digit
@@ -88,20 +88,14 @@ const Pi = () => {
   const handleRefresh = () => {
     setIsPrinting(false);
     setIsPaused(false);
-    handleClear();
     setDisplayedDigits("3.");
     setNumDigits(20);
     setErrorType({ negative: false, tooLong: false });
   };
   //--------------------------------------------------------------
-  const handleSearch = () => {  
-    setSearchValue(numSearch);
+  const handleSearch = () => {
+    dispatch(searchPi(seqSearch));
   }; 
-  //--------------------------------------------------------------
-  const handleClear = () => {
-    setNumSearch("");
-    setSearchValue("");
-  };
   //--------------------------------------------------------------
   const changeNumDigit = (value) => {
     setIsPrinting(false);
@@ -110,8 +104,9 @@ const Pi = () => {
     setErrorType({ negative: parseInt(value) < 0, tooLong: parseInt(value) > 1000 });
   };
   //--------------------------------------------------------------
-  const changeNumSearch = (value) => {
-    setNumSearch(value || "");
+  const changeSeqSearch = (value) => {
+    dispatch(searchPi(-1));
+    setSeqSearch(value);
   };
   //--------------------------------------------------------------
   
@@ -144,11 +139,12 @@ const Pi = () => {
         <Flex
           sx={{
             justifyContent: "center",
-            gap: "10%",
+            gap: "9%",
             flexDirection: "row",
             width: "100%",
           }}
         >
+          {/* ----- Number of Digits ----- */}
           <Flex
             id="main box"
             sx={{
@@ -287,66 +283,148 @@ const Pi = () => {
             </Flex>
           </Flex>
 
+          {/* ----- Hightlight Digit ----- */}
           <Flex
-            id="search box"
+            id="highlight box"
             sx={{
-              alignItems: "center",
-              background: "whitesmoke",
-              border: "solid",
-              borderRadius: "30px",
-              flexDirection: "column",
-              height: "280px",
               justifyContent: "space-between",
-              marginTop: "50px",
-              py: "20px",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "280px",
               width: "15%",
+              background: "whitesmoke",
+              borderRadius: "30px",
+              border: "solid",
+              mt: "50px",
+              py: "20px",
             }}
           >
             {/* --- Label --- */}
             <Text sx={{ color: "black" }}>
-              <FormattedMessage id="lbl.search_number" />
+              <FormattedMessage id="lbl.highlight_digit" />
+            </Text>
+
+            {/* --- Buttons --- */}
+            <Flex
+              sx={{
+                justifyContent: "space-around",
+                flexWrap: "wrap",
+                width: "100%",
+              }}
+            >
+              {Array(10)
+                .fill(null)
+                .map((v, i) => (
+                  <MyButton
+                    key={i}
+                    bg="deepSkyBlue"
+                    disabled={highlightDigit === i}
+                    onClick={() => setHighlightDigit(i)}
+                    sx={{ width: "24%", my: "2%", mx: "4%", height: "36px" }}
+                  >
+                    {" "}
+                    {i}{" "}
+                  </MyButton>
+                ))}
+              <MyButton
+                key={11}
+                bg="coral"
+                disabled={highlightDigit === null}
+                onClick={() => setHighlightDigit(null)}
+                sx={{ width: "59%", m: "3%", height: "36px" }}
+              >
+                None
+              </MyButton>
+            </Flex>
+          </Flex>
+
+          {/* ----- Search Sequence ----- */}
+          <Flex
+            id="search box"
+            sx={{
+              justifyContent: "flex-start",
+              flexDirection: "column",
+              alignItems: "center",
+              height: "280px",
+              width: "15%",
+              background: "whitesmoke",
+              borderRadius: "30px",
+              border: "solid",
+              mt: "50px",
+              py: "20px",
+            }}
+          >
+            {/* --- Label --- */}
+            <Text sx={{ color: "black" }}>
+              <FormattedMessage id="lbl.search_sequence" />
             </Text>
 
             {/* --- Input --- */}
-            <Input
+            <Flex
               sx={{
-                marginX: "10px",
-                textAlign: "center",
-                width: "100px",
-                borderRadius: "10px",
-                borderWidth: "2px",
-                color: "black",
-              }}
-              value={numSearch}
-              onChange={(e) => {
-                changeNumSearch(e.target.value.replace(/\D/g, ""));
-              }}
-            />
-
-  <Flex sx={{m:"23px", width:"100%",justifyContent: "space-evenly",
+                width: "100%",
+                justifyContent: "space-around",
                 flexWrap: "wrap",
                 alignItems: "center",
-                gap: "10px"}}>
-{/* --- Clear --- */}
-            <MyButton
-              disabled={!numSearch && !searchValue}
-              onClick={handleClear}
-              bg="coral"
-              sx={{ width: "45%", height: "36px" }}
+                my: "20px",
+              }}
             >
-              <FormattedMessage id="lbl.clear" />
-            </MyButton>
-            {/* --- Search --- */}
-            <MyButton
-              disabled={!numSearch || numSearch === searchValue}
-              onClick={handleSearch}
-              bg="deepSkyBlue"
-              sx={{ width: "45%", height: "36px" }}
-            >
-              <FormattedMessage id="lbl.search" />
-            </MyButton>
-</Flex>
+              <Input
+                sx={{
+                  textAlign: "center",
+                  width: "55%",
+                  borderRadius: "10px",
+                  borderWidth: "2px",
+                  color: "black",
+                }}
+                value={seqSearch}
+                onChange={(e) => {
+                  changeSeqSearch(e.target.value.replace(/\D/g, ""));
+                }}
+              />
+              <MyButton
+                disabled={!seqSearch}
+                onClick={handleSearch}
+                bg="deepSkyBlue"
+                sx={{ width: "35%", height: "36px" }}
+              >
+                <FormattedMessage id="lbl.search" />
+              </MyButton>
 
+              {/* --- Results --- */}
+              <Flex
+                sx={{
+                  scrollBehavior: "smooth",
+                  flexWrap: "wrap",
+                  width: "100%",
+                  my: "15px",
+                  mx: "10px",
+                  borderRadius:"5%",
+                  overflowY: "scroll",
+                  maxHeight:"145px"
+                }}
+              >
+                {searchResults.split(",").map((v, i) => (v ?
+                  <Text
+                    sx={{
+                      display: "flex",
+                      alignItems: "center", 
+                      justifyContent: "center", 
+                      mx: "3px",
+                      my:"2px",
+                      height:"30px",
+                      width:"40px",
+                      fontSize: "16px",
+                      color:"black",
+                      bg: "lightGrey",
+                      borderRadius:"25%",
+                    }}
+                  >
+                    {v}
+                  </Text> : <></>
+                ))}
+              </Flex>
+            </Flex>
           </Flex>
         </Flex>
         <RenderDigits
@@ -357,7 +435,7 @@ const Pi = () => {
             displayedDigits !== null &&
             displayedDigits.length !== numDigits + 2
           }
-          search={searchValue}
+          search={"" + highlightDigit}
         />
       </Flex>
       <Footer />

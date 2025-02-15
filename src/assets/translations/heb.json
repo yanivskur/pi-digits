@@ -15,9 +15,9 @@
   "lbl.dark_theme": "מצב כהה",
   "lbl.light_theme": "מצב בהיר",
   "lbl.logout": "להתנתק",
-  "lbl.search_number": "לחפש מספר",
+  "lbl.search_sequence": "חפש רצף",
+  "lbl.highlight_digit": "הדגש ספרה",
   "lbl.search": "חפש",
-  "lbl.clear": "נקה",
   "lbl.err_too_long": "מספר הספרות לא יכול להיות גדול מ1000!",
   "lbl.err_negative": "מספר הספרות לא יכול להיות שלילי!"
 }

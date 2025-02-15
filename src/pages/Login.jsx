@@ -41,7 +41,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      dispatch(doLogin({userId: data.username}));
+      dispatch(doLogin({ userId: data.username }));
     } catch (error) {
       setErrorState(error);
     }
@@ -89,7 +89,7 @@ const Login = () => {
             }}
           >
             <Image variant="logo" src={logo} />
-            <LanguageSwitch sx={{color:"text"}}/>
+            <LanguageSwitch sx={{ color: "text" }} />
           </Flex>
 
           <Heading sx={{ textAlign: "center", mt: "2rem" }}>

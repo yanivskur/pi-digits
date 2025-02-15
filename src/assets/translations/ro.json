@@ -15,9 +15,9 @@
   "lbl.dark_theme": "Tema întunecată",
   "lbl.light_theme": "Tema ușoară",
   "lbl.logout": "Deconectare",
-  "lbl.search_number": "Nr. de căutare",
+  "lbl.search_sequence": "Secvență de căutare",
+  "lbl.highlight_digit": "Evidențiați cifra",
   "lbl.search": "Căutare",
-  "lbl.clear": "Clar",
   "lbl.err_too_long": "Numărul de cifre nu poate fi mai mare de 1000!",
   "lbl.err_negative": "Numărul de cifre trebuie să fie pozitiv!"
 }

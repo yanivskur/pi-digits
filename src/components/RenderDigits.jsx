@@ -43,20 +43,22 @@ const RenderDigits = ({
           ) : errorType.negative ? (
             <FormattedMessage id="lbl.err_negative" />
           ) : (
-            digitsToDisplay.split(
-              new RegExp(`(${search})`, "gi")).map((part, index) => 
+            digitsToDisplay
+              .split(new RegExp(`(${search})`, "gi"))
+              .map((part, index) =>
                 part === search ? (
                   <Text
                     key={index}
                     sx={{
-                      color: "deepSkyBlue"
+                      color: "deepSkyBlue",
                     }}
                   >
                     {part}
                   </Text>
                 ) : (
                   <Text key={index}>{part}</Text>
-              ))
+                )
+              )
           )}
           {showSpinner && (
             <Spinner size={"25px"} color={"DeepSkyBlue"}></Spinner>
@@ -70,7 +72,9 @@ const RenderDigits = ({
           width: "15%",
           margin: "0 5px 0 5px",
         }}
-        onClick={() => {navigator.clipboard.writeText(digitsToDisplay)}}
+        onClick={() => {
+          navigator.clipboard.writeText(digitsToDisplay);
+        }}
       >
         <FormattedMessage id="lbl.copy" />
       </MyButton>
