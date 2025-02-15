@@ -37,6 +37,8 @@ const Pi = () => {
   const [highlightDigit, setHighlightDigit] = useState(null);
   // The sequnece in the input field
   const [seqSearch, setSeqSearch] = useState("");
+  // The sequence the results are for
+  const [resulatSeq, setResultSeq] = useState("");
 
   //--------------------------------------------------------------
   //Use effect to print every second 1 digit
@@ -88,6 +90,10 @@ const Pi = () => {
   const handleRefresh = () => {
     setIsPrinting(false);
     setIsPaused(false);
+    dispatch(searchPi(-1));
+    setResultSeq(null);
+    setHighlightDigit(null);
+    setSeqSearch("");
     setDisplayedDigits("3.");
     setNumDigits(20);
     setErrorType({ negative: false, tooLong: false });
@@ -95,6 +101,7 @@ const Pi = () => {
   //--------------------------------------------------------------
   const handleSearch = () => {
     dispatch(searchPi(seqSearch));
+    setResultSeq(seqSearch);
   }; 
   //--------------------------------------------------------------
   const changeNumDigit = (value) => {
@@ -106,6 +113,7 @@ const Pi = () => {
   //--------------------------------------------------------------
   const changeSeqSearch = (value) => {
     dispatch(searchPi(-1));
+    setResultSeq(null);
     setSeqSearch(value);
   };
   //--------------------------------------------------------------
@@ -383,7 +391,7 @@ const Pi = () => {
                 }}
               />
               <MyButton
-                disabled={!seqSearch}
+                disabled={resulatSeq === seqSearch}
                 onClick={handleSearch}
                 bg="deepSkyBlue"
                 sx={{ width: "35%", height: "36px" }}
