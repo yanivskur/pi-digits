@@ -18,6 +18,8 @@
   "lbl.search_sequence": "חפש רצף",
   "lbl.highlight_digit": "הדגש ספרה",
   "lbl.search": "חפש",
+  "lbl.no_results": "אין תוצאות",
+  "lbl.none":"כלום",
   "lbl.err_too_long": "מספר הספרות לא יכול להיות גדול מ1000!",
   "lbl.err_negative": "מספר הספרות לא יכול להיות שלילי!"
 }

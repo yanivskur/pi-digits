@@ -18,6 +18,8 @@
   "lbl.search_sequence": "Secvență căut",
   "lbl.highlight_digit": "Evidențiați cifra",
   "lbl.search": "Căutare",
+  "lbl.no_results": "nici un rezultat",
+  "lbl.none":"Nici unul",
   "lbl.err_too_long": "Numărul de cifre nu poate fi mai mare de 1000!",
   "lbl.err_negative": "Numărul de cifre trebuie să fie pozitiv!"
 }

@@ -18,6 +18,8 @@
   "lbl.search_sequence": "Search sequence",
   "lbl.highlight_digit": "Highlight digit",
   "lbl.search": "Search",
+  "lbl.no_results": "No results",
+  "lbl.none":"None",
   "lbl.err_too_long": "Number of digits cannot be larger than 1000!",
   "lbl.err_negative": "Number of digits must be positive!"
 }

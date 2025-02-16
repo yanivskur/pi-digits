@@ -100,8 +100,7 @@ const Pi = () => {
   };
   //--------------------------------------------------------------
   const handleSearch = () => {
-    dispatch(searchPi(seqSearch));
-    setResultSeq(seqSearch);
+    dispatch(searchPi(seqSearch)).then(() => setResultSeq(seqSearch));
   }; 
   //--------------------------------------------------------------
   const changeNumDigit = (value) => {
@@ -113,8 +112,8 @@ const Pi = () => {
   //--------------------------------------------------------------
   const changeSeqSearch = (value) => {
     dispatch(searchPi(-1));
-    setResultSeq(null);
-    setSeqSearch(value);
+    setResultSeq("");
+    setSeqSearch(value || "");
   };
   //--------------------------------------------------------------
   
@@ -136,9 +135,9 @@ const Pi = () => {
         sx={{
           alignItems: "center",
           flexDirection: "column",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
           height: "100%",
-          py: "20px",
+          // py: "20px",
           my: "auto",
         }}
       >
@@ -341,7 +340,7 @@ const Pi = () => {
                 onClick={() => setHighlightDigit(null)}
                 sx={{ width: "59%", m: "3%", height: "36px" }}
               >
-                None
+                <FormattedMessage id="lbl.none" />
               </MyButton>
             </Flex>
           </Flex>
@@ -407,34 +406,44 @@ const Pi = () => {
                   width: "100%",
                   my: "15px",
                   mx: "10px",
-                  borderRadius:"5%",
-                  overflowY: "scroll",
-                  maxHeight:"145px"
+                  borderRadius: "5%",
+                  overflowY: "auto",
+                  maxHeight: "145px",
                 }}
               >
-                {searchResults.split(",").map((v, i) => (v ?
-                  <Text
-                    sx={{
-                      display: "flex",
-                      alignItems: "center", 
-                      justifyContent: "center", 
-                      mx: "3px",
-                      my:"2px",
-                      height:"30px",
-                      width:"40px",
-                      fontSize: "16px",
-                      color:"black",
-                      bg: "lightGrey",
-                      borderRadius:"25%",
-                    }}
-                  >
-                    {v}
-                  </Text> : <></>
-                ))}
+                {searchResults.split(",").length === 1 && resulatSeq ? (
+                  <Flex sx={{color:"black"}}><FormattedMessage id="lbl.no_results"/></Flex>
+                ) : (
+                  searchResults.split(",").map((v, i) =>
+                    v ? (
+                      <Text
+                        key={i}
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          mx: "3px",
+                          my: "2px",
+                          height: "30px",
+                          width: "40px",
+                          fontSize: "16px",
+                          color: "black",
+                          bg: "lightGrey",
+                          borderRadius: "25%",
+                        }}
+                      >
+                        {v}
+                      </Text>
+                    ) : (
+                      <></>
+                    )
+                  )
+                )}
               </Flex>
             </Flex>
           </Flex>
         </Flex>
+
         <RenderDigits
           digitsToDisplay={displayedDigits}
           errorType={errorType}
