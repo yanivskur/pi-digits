@@ -412,7 +412,16 @@ const Pi = () => {
                 }}
               >
                 {searchResults.split(",").length === 1 && resulatSeq ? (
-                  <Flex sx={{color:"black"}}><FormattedMessage id="lbl.no_results"/></Flex>
+                  <Flex
+                    sx={{
+                      color: "black",
+                      fontFamily: "Tahoma",
+                      fontSize: "15px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    <FormattedMessage id="lbl.no_results" />
+                  </Flex>
                 ) : (
                   searchResults.split(",").map((v, i) =>
                     v ? (
