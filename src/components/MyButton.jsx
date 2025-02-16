@@ -9,6 +9,7 @@ const MyButton = ({ children, ...props }) => {
         color: "black",
         textAlign: "center",
         fontWeight: "bold",
+        cursor: "pointer",
         fontSize: "18px",
         ":hover": props.disabled ? {} : {
           opacity: "0.8",
@@ -16,6 +17,7 @@ const MyButton = ({ children, ...props }) => {
         },
         ":disabled": {
           bg: "lightgray",
+          cursor: "auto"
         },
         transition: "100ms ease-in",
         ...props.sx,

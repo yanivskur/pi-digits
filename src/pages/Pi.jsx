@@ -91,7 +91,7 @@ const Pi = () => {
     setIsPrinting(false);
     setIsPaused(false);
     dispatch(searchPi(-1));
-    setResultSeq(null);
+    setResultSeq("");
     setHighlightDigit(null);
     setSeqSearch("");
     setDisplayedDigits("3.");
@@ -137,7 +137,6 @@ const Pi = () => {
           flexDirection: "column",
           justifyContent: "space-evenly",
           height: "100%",
-          // py: "20px",
           my: "auto",
         }}
       >

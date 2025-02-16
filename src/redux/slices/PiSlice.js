@@ -34,8 +34,8 @@ export const searchPi = createAsyncThunk(
       const fetchData = await fetch("https://api.pi.delivery/v1/pi?start=1&numberOfDigits=1000")
         .then((response) => response.json())
         .then((response) => response.content);
-
-      return [...indexOfSubstrings(fetchData, sequence)].toString(); // Extract indices
+      
+      return sequence.length > 0 ? [...indexOfSubstrings(fetchData, sequence)].toString() : ""; // Extract indices
       } catch (err) {
       return rejectWithValue(err);
     }
